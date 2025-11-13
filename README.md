@@ -28,6 +28,7 @@ ELEVEN_API_KEY=
 LIVEKIT_URL=
 LIVEKIT_API_KEY=
 LIVEKIT_API_SECRET=
+```
 
 💡 Copia el archivo `.env.example` y renómbralo a `.env`, luego completa tus credenciales.
 
@@ -54,6 +55,7 @@ LIVEKIT_API_SECRET=
 4. Cambia de rama:
    ```bash
    git checkout test_voice_agent
+   ```
 
 ### 🔹 En PyCharm
 
@@ -70,17 +72,20 @@ LIVEKIT_API_SECRET=
 
 ```bash
 uv venv
+```
 
 ## 🔧 Activar entorno
 
 **Mac / Linux:**
 ```bash
 source .venv/bin/activate
+```
 
 **Windows:**
 
 ```powershell
 .venv\Scripts\activate
+```
 
 ## 🧩 Paso 3: Instalar dependencias
 
@@ -88,6 +93,7 @@ source .venv/bin/activate
 
 ```bash
 uv sync
+```
 
 Esto instalará todas las dependencias definidas en pyproject.toml
 
@@ -104,17 +110,15 @@ Esto instalará todas las dependencias definidas en pyproject.toml
 **Descargar los pesos del modelo:**
 ```bash
 python 01_voice_agent.py download files
+```
 
 **Iniciar el agente:**
 ```bash
 python 01_voice_agent.py dev
+```
 
 
 **Abrir en el navegador:**  
 👉 [https://agents-playground.livekit.io](https://agents-playground.livekit.io)
 
 ¡Conéctate a la sesión usando las credenciales del `.env` y habla con tu agente!
-
-
-
-
