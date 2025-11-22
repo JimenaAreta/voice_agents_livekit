@@ -450,9 +450,6 @@ async def entrypoint(ctx: JobContext):
         ),
     )
 
-    # Primera frase que dirá el agente al conectarse
-    await agent.say("Restaurante MDS10, ¿Dígame?")
-
 
 # ====================== #
 #       MAIN / CLI       #
