@@ -325,12 +325,18 @@ class Checkout(BaseAgent):
     def __init__(self, menu: str) -> None:
         super().__init__(
             instructions=(
-                f"Eres un agente para realizar pagos en un restaurante. El menú es: {menu}\n"
-                "Tu responsabilidad es confirmar el coste total del "
-                "pedido y luego recopilar el nombre del cliente, número de teléfono e información "
-                "de la tarjeta de crédito, incluyendo el número de tarjeta, fecha de caducidad y CVV paso a paso."
-                "Una vez recopilada toda la información, confirma el pago y despide al cliente"
-            ),
+            f"Eres un agente para realizar pagos en un restaurante. El menú es: {menu}\n"
+            "Tu responsabilidad es confirmar el coste total del pedido y luego recopilar "
+            "el nombre del cliente, número de teléfono e información de la tarjeta de crédito, "
+            "incluyendo el número de tarjeta, fecha de caducidad y CVV paso a paso.\n"
+            "Una vez recopilada toda la información, confirma el pago y despide al cliente.\n"
+            "Muy importante: cuando expliques los importes o el cálculo del total, NO uses "
+            "símbolos como '=', '+', '-', '*', 'x' ni otros caracteres especiales. "
+            "En su lugar, usa solo lenguaje natural en español, por ejemplo: "
+            "'la suma de los platos es...', 'el total a pagar es...'. "
+            "Evita también escribir fórmulas matemáticas o listas con signos; responde siempre "
+            "en frases completas y conversacionales."
+        ),
             tools=[update_name, update_phone, to_greeter],
             tts=elevenlabs.TTS(
             voice_id="Ir1QNHvhaJXbAGhT50w3",
