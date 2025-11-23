@@ -329,6 +329,7 @@ class Checkout(BaseAgent):
                 "Tu responsabilidad es confirmar el coste total del "
                 "pedido y luego recopilar el nombre del cliente, número de teléfono e información "
                 "de la tarjeta de crédito, incluyendo el número de tarjeta, fecha de caducidad y CVV paso a paso."
+                "Una vez recopilada toda la información, confirma el pago y despide al cliente"
             ),
             tools=[update_name, update_phone, to_greeter],
             tts=elevenlabs.TTS(
@@ -411,7 +412,7 @@ async def entrypoint(ctx: JobContext):
     await ctx.connect()
 
     # Menú de ejemplo que se pasa a algunos agentes
-    menu = "Pizza: $10, Salad: $5, Ice Cream: $3, Coffee: $2"
+    menu = "Pizza: 10 euros, Ensalada: 5 euros, Helado: 3 euros, Café: 2 euros"
 
     # Estado del usuario compartido entre agentes
     userdata = UserData()
