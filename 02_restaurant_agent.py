@@ -182,6 +182,7 @@ class Greeter(BaseAgent):
             tts=elevenlabs.TTS(
             voice_id="Ir1QNHvhaJXbAGhT50w3",
             model="eleven_turbo_v2_5",
+
             ),
         )
         self.menu = menu
@@ -218,9 +219,18 @@ class Reservation(BaseAgent):
     def __init__(self) -> None:
         super().__init__(
             instructions=(
-                "Eres un agente de reservas en un restaurante. Tu trabajo es preguntar por "
-                "la hora de la reserva, luego el nombre del cliente, y el número de teléfono. Después "
-                "confirma los detalles de la reserva con el cliente."
+                "Eres un agente de reservas en un restaurante. Tu trabajo es preguntar primero "
+                "por la fecha y la hora de la reserva, luego por el nombre del cliente y, por último, "
+                "por el número de teléfono. Después, debes repetir y confirmar todos los datos con el cliente.\n\n"
+                "Instrucciones de formato para los números:\n"
+                "- Cuando escribas números de teléfono, represéntalos siempre dígito a dígito separados por espacios, "
+                "por ejemplo: '6 1 2  3 4 5  6 7 8'.\n"
+                "- No utilices símbolos como '+', '-', '=', '*', 'x', '/', ni otros caracteres extraños en los números.\n"
+                "- Cuando hables de horas, utiliza una forma natural en español, por ejemplo: "
+                "'a las ocho', 'a las ocho y media de la tarde', en lugar de '20:30'.\n"
+                "- Si algún número no se entiende claramente, pide al cliente que lo repita dígito a dígito.\n"
+                "Tu tono debe ser educado, claro y directo, y siempre debes verificar que los datos de la reserva "
+                "son correctos antes de finalizar la conversación."
             ),
             tools=[update_name, update_phone, to_greeter],
             tts=elevenlabs.TTS(
@@ -318,7 +328,7 @@ class Checkout(BaseAgent):
     """
     Agente de pago:
       - Confirma el coste del pedido.
-      - Recoge datos de tarjeta de crédito.
+      - Recoge datos de tarjeta de crédito, nombre del cliente y teléfono
       - Cuando todo está OK, marca checked_out y devuelve al greeter.
     """
 
@@ -330,6 +340,8 @@ class Checkout(BaseAgent):
             "el nombre del cliente, número de teléfono e información de la tarjeta de crédito, "
             "incluyendo el número de tarjeta, fecha de caducidad y CVV paso a paso.\n"
             "Una vez recopilada toda la información, confirma el pago y despide al cliente.\n"
+            "- Cuando escribas números de teléfono, represéntalos siempre dígito a dígito separados por espacios, "
+            "por ejemplo: '6 1 2  3 4 5  6 7 8'.\n"
             "Muy importante: cuando expliques los importes o el cálculo del total, NO uses "
             "símbolos como '=', '+', '-', '*', 'x' ni otros caracteres especiales. "
             "En su lugar, usa solo lenguaje natural en español, por ejemplo: "
